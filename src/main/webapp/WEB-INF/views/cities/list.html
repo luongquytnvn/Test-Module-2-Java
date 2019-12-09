@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>City</title>
+</head>
+<body>
+<p>
+    <a th:href="@{/}">Back to homepage</a>
+</p>
+<p>
+    <a href="/city-create">Create new city</a>
+</p>
+<h1>Cities</h1>
+<br/>
+<p>
+    <a th:if="${message != null}" th:text="${message}"></a>
+</p>
+<table border="1" style="border-collapse: collapse">
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Country</th>
+        <th>Area</th>
+        <th>Population</th>
+        <th>GDP</th>
+        <th>Description</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="city : ${cities}">
+        <tr>
+            <td><a th:href="@{/city-view/__${city.id}__}" th:text="${city.id}"></a></td>
+            <td><a th:href="@{/city-view/__${city.id}__}" th:text="${city.name}"></a></td>
+            <td th:text="${city.country.name}"></td>
+            <td th:text="${city.area}"></td>
+            <td th:text="${city.population}"></td>
+            <td th:text="${city.gdp}"></td>
+            <td th:text="${city.description}"></td>
+            <td><a th:href="@{/city-edit/__${city.id}__ }">Edit</a></td>
+            <td><a th:href="@{/city-delete/__${city.id}__ }">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>
